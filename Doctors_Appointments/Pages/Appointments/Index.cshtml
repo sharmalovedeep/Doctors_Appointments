@@ -1,0 +1,59 @@
+﻿@page
+@model Doctors_Appointments.Pages.Appointments.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Appointment Details</h1>
+
+<p>
+    <a class="btn btn-outline-info"asp-page="Create">Add</a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Appointment[0].Patient)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Appointment[0].Doctor)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Appointment[0].ReasonForAppointment)
+            </th>    
+            <th>
+                @Html.DisplayNameFor(model => model.Appointment[0].AppointmentTime)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Appointment) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Patient.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Doctor.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ReasonForAppointment.Reason)
+            </td>        
+            <td>
+                @Html.DisplayFor(modelItem => item.AppointmentTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ReasonForAppointment.Charge)
+            </td>    
+
+            <td>
+                <a class="btn btn-outline-info" asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
+                <a class="btn btn-outline-info"asp-page="./Details" asp-route-id="@item.Id">Details</a> |
+                <a class="btn btn-outline-info"asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
